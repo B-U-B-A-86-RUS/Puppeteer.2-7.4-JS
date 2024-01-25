@@ -13,25 +13,27 @@ describe("Service for Movie tickets order", () => {
   afterEach(() => {
     page.close();
   });
-  test.skip("Zveropolis", async() =>{
+  test.only("Zveropolis", async() =>{
     await page.goto("http://qamid.tmweb.ru/client/index.php");
-    await page.click("[data-seance-time-stamp='1706115600']");
+    await clickElement(page, "body > main > section:nth-child(1) > div.movie-seances__hall > ul > li:nth-child(3) > a");
+    await clickElement(page, "body > main > section > div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(4) > span.buying-scheme__chair.buying-scheme__chair_vip");
+    await clickElement(page, "body > main > section > div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(4) > span.buying-scheme__chair.buying-scheme__chair_vip");
     await page.waitForSelector(".buying-scheme__chair + .buying-scheme__chair_vip");
     await page.click(".buying-scheme__chair + .buying-scheme__chair_vip");
     await page.click(".acceptin-button");
     await page.click(".acceptin-button");
   })
-  test.only("Mickey Mouse positive", async() =>{
+  test.skip("Mickey Mouse positive", async() =>{
     await page.goto("http://qamid.tmweb.ru/client/index.php");
     await clickElement(page, "[data-time-stamp='1706130000']");
     await clickElement(page, "[data-seance-id='189']");
-    await clickElement(page, "div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(5)");
-    await clickElement(page, "div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(5) > span:nth-child(5)");
+    await clickElement(page, ".buying-scheme__chair_standart")
+    await clickElement(page, ".buying-scheme__chair_standart")
     await clickElement(page, "body > main > section > div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(5) > span:nth-child(6)");
     await clickElement(page, "body > main > section > button");
     await clickElement(page, "body > main > section > div > button");
   }) 
-  test.only("Mickey Mouse negative", async() =>{
+  test.skip("Mickey Mouse negative", async() =>{
     await page.goto("http://qamid.tmweb.ru/client/index.php");
     await clickElement(page, "[data-time-stamp='1706130000']");
     await clickElement(page, "[data-seance-id='189']");
