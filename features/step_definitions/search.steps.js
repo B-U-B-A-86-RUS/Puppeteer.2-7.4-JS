@@ -17,28 +17,24 @@ After(async function () {
   }
 });
 
-Given("user is on page", async function (string) {
+Given("user is on page", async function (string) { // Открываем страницу
   return await this.page.goto(`http://qamid.tmweb.ru/client/index.php`, {
     setTimeout: 50000,
   });
 });
-
 When("The user selects the desired movie", async function (string) {
   return await clickElement(this.page, "body > main > section:nth-child(1) > div.movie-seances__hall > ul > li:nth-child(3) > a", string);
 });
-
 When("The user chooses a location", async function (string) {
-  return await putText(this.page, "body > main > section > div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(4) > span.buying-scheme__chair.buying-scheme__chair_vip", string);
+  return await putText(this.page, ".buying-scheme__chair_standart", string);
 });
-
-When("The user chooses a location", async function (string) {
-  return await putText(this.page, "body > main > section > div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(4) > span.buying-scheme__chair.buying-scheme__chair_vip", string);
-});
-
-When("The user has booked tickets", async function (string) {
+When("The user has booked tickets", async function (string) { //
   return await putText(this.page, ".acceptin-button", string);
 });
-
-Then("The user has confirmed the booking of tickets", async function (string) {
+When("The user has confirmed the booking of tickets", async function (string) { //
   return await putText(this.page, ".acceptin-button", string);
 });
+Then("Is the QR code of the reservation visible", async function (string) { 
+  return await putText(this.page, ".ticket__hint", string);
+});
+
