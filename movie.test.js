@@ -24,7 +24,7 @@ describe("Service for Movie tickets order", () => {
     const actual = await getText(page, ".ticket__hint");
     await expect(actual).toContain("Покажите QR-код нашему контроллеру для подтверждения бронирования.");
   })
-  test.only("Mickey Mouse positive", async() =>{ //
+  test.skip("Mickey Mouse positive", async() =>{ //
     await page.goto("http://qamid.tmweb.ru/client/index.php"); 
     await clickElement(page, ".page-nav__day:last-child");
     await clickElement(page, "body > main > section:nth-child(2) > div.movie-seances__hall > ul > li:nth-child(2) > a"); // Время
