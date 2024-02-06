@@ -16,18 +16,8 @@ After(async function () {
     await this.browser.close();
   }
 });
-
-Given("user is on page1- {string}", async function (string) {return await this.page.goto(`http://qamid.tmweb.ru/client/index.php`, {setTimeout: 50000,});});
-When("The user selects the desired day", async function () {return await clickElement(this.page, ".page-nav__day:last-child");});
-When("The user selects the desired movie", async function () {return await clickElement(this.page, "body > main > section:nth-child(1) > div.movie-seances__hall > ul > li:nth-child(3) > a");});
-When("The user chooses a location", async function () {return await clickElement(this.page, ".buying-scheme__chair_standart");});
-When("The user has booked tickets", async function () {return await clickElement(this.page, ".acceptin-button");});
-When("The user has confirmed the booking of tickets", async function () {return await clickElement(this.page, ".acceptin-button");});
-Then("Is the QR code of the reservation visible1", async function (string) 
-{const actual = await getText(page, ".ticket__hint");
- await expect(actual).toContain("Покажите QR-код нашему контроллеру для подтверждения бронирования.");});
-
-Given("user is on page2- {string}", async function (string) {
+//---------------------------------------------------------------------------
+Given("user is on page- {string}", async function (string) {
   return await this.page.goto(`http://qamid.tmweb.ru/client/index.php`, {
     setTimeout: 50000,
   });
@@ -37,7 +27,9 @@ When("The user selects the desired day", async function () {
 });
 When("The user selects the desired movie", async function () {
   return await clickElement(
-    this.page,"body > main > section:nth-child(1) > div.movie-seances__hall > ul > li:nth-child(3) > a");
+    this.page,
+    "body > main > section:nth-child(1) > div.movie-seances__hall > ul > li:nth-child(3) > a"
+  );
 });
 When("The user chooses a location", async function () {
   return await clickElement(this.page, ".buying-scheme__chair_standart");
@@ -48,17 +40,19 @@ When("The user has booked tickets", async function () {
 When("The user has confirmed the booking of tickets", async function () {
   return await clickElement(this.page, ".acceptin-button");
 });
-Then("Is the QR code of the reservation visible2", async function (string) {
+Then("Is the QR code of the reservation visible", async function (string) {
   const actual = await getText(page, ".ticket__hint");
-  await expect(actual).toContain("Приятного просмотра!");
+  await expect(actual).toContain(
+    "Покажите QR-код нашему контроллеру для подтверждения бронирования."
+  );
 });
-
-Given("user is on page3- {string}", async function (string) {
+// ---------------------------------------------------------------------------
+Given("user is on page2- {string}", async function (string) {
   return await this.page.goto(`http://qamid.tmweb.ru/client/index.php`, {
     setTimeout: 50000,
   });
 });
-When("The user selects the desired day", async function () {
+When("The user selects the desired day2", async function () {
   return await clickElement(this.page, ".page-nav__day:last-child");
 });
 When("The user selects the desired movie2", async function () {
@@ -67,16 +61,44 @@ When("The user selects the desired movie2", async function () {
     "body > main > section:nth-child(1) > div.movie-seances__hall > ul > li:nth-child(3) > a"
   );
 });
-When("The user selects the occupied place", async function () {
+When("The user chooses a location2", async function () {
   return await clickElement(this.page, ".buying-scheme__chair_standart");
 });
-When("The user has booked tickets", async function () {
+When("The user has booked tickets2", async function () {
   return await clickElement(this.page, ".acceptin-button");
 });
-When("The user has confirmed the booking of tickets", async function () {
+When("The user has confirmed the booking of tickets2", async function () {
   return await clickElement(this.page, ".acceptin-button");
 });
-Then("Is the QR code of the reservation visible neg", async function (string) {
+Then("Is the QR code of the reservation visible2", async function (string) {
+  const actual = await getText(page, ".ticket__hint");
+  await expect(actual).toContain("Приятного просмотра!");
+});
+
+Given("user is on page-3- {string}", async function (string) {
+  return await this.page.goto(`http://qamid.tmweb.ru/client/index.php`, {
+    setTimeout: 50000,
+  });
+});
+When("The user selects the desired day-3", async function () {
+  return await clickElement(this.page, ".page-nav__day:last-child");
+});
+When("The user selects the desired movie-3", async function () {
+  return await clickElement(
+    this.page,
+    "body > main > section:nth-child(1) > div.movie-seances__hall > ul > li:nth-child(3) > a"
+  ); 
+});
+When("The user selects the occupied place-3", async function () {
+  return await clickElement(this.page, ".buying-scheme__chair_standart");
+});
+When("The user has booked tickets-3", async function () {
+  return await clickElement(this.page, ".acceptin-button");
+});
+When("The user has confirmed the booking of tickets-3", async function () {
+  return await clickElement(this.page, ".acceptin-button");
+});
+Then("Is the QR code of the reservation visible-3", async function (string) {
   const actual = await getText(page, ".ticket__hint");
   await expect(actual).toContain("Выбранное Вами место уже занято");
 });
